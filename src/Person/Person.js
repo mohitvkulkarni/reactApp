@@ -4,7 +4,7 @@ const person = props => {
   return (
     <div className="Person">
       <p onClick={props.click}>
-        My name is {props.name} and my age is {props.age} Years old
+        My name is {props.name} and I am {props.age} Years old
       </p>
       <input type="text" onChange={props.changed} value={props.name} />
       <p>{props.children}</p>
