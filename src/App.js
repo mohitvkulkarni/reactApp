@@ -41,6 +41,9 @@ class App extends Component {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow });
   };
+
+
+  
   render() {
     const style = {
       backgroundColor: "white",
@@ -50,33 +53,28 @@ class App extends Component {
       cursor: "pointer"
     };
 
+    let persons = null;
+
+    if (this.state.showPersons){
+      persons = (
+        <div>
+         { this.state.persons.map(person => {
+            return (<Person
+            name={person.name}
+            age={person.age} />)
+          })}
+          </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi, I am Mohit</h1>
         <p>This is really working!</p>
-        <button style={style} onClick={() => this.togglePersonsHandler}>
+        <button style={style} onClick= {this.togglePersonsHandler}>
           Switch Name
         </button>
-        {this.state.showPersons ? (
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-              click={() => this.switchNameHandler("Rob")}
-            >
-              My hobby includes killing people
-            </Person>
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-            />
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-              changed={this.nameChangedHandler}
-            />
-          </div>
-        ) : null}
+        {persons}
       </div>
     );
   }
